@@ -15,9 +15,13 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('admin/panel', function () {
+    return view('admin.panel');
+})->name('admin-panel');
 
 //Route::group(['middleware' => 'guest'], function () {
 //    Route::group([
