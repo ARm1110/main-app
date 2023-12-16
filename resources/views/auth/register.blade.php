@@ -52,7 +52,7 @@
                                         <button type="submit" class="btn-login w-50 waves-effect waves-light"><i class="bi bi-person"></i>
                                              ثبت نام در سایت
                                         </button>
-                                        <a class="btn-login login w-50 waves-effect waves-light" href="login.html"><i class="bi bi-lock"></i>
+                                        <a class="btn-login login w-50 waves-effect waves-light" href="{{ route('login')  }}"><i class="bi bi-lock"></i>
                                             ورود به سایت
                                         </a>
                                     </div>
@@ -84,7 +84,7 @@
                             <p class="my-3">
                                 اگر قبلا ثبت نام کرده اید میتوانید از این قسمت وارد شوید
                             </p>
-                            <a href="{{ route('show.login')  }}" class="btn-login-page waves-effect waves-light">وارد شوید</a>
+                            <a href="{{ route('login')  }}" class="btn-login-page waves-effect waves-light">وارد شوید</a>
                         </div>
                     </div>
                 </div>

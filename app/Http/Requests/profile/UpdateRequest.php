@@ -1,43 +1,39 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\profile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     protected $stopOnFirstFailure = true;
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
-    {
-        return auth()->guest();
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
+            'image' =>'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:6',
-            'remember' => 'in_array:null.true'
+            'password' => 'nullable|min:6|confirmed',
+            'current_password'=>'required|current_password'
         ];
     }
     public function messages()
     {
         return [
-
+            'image.image'=>'فایل انتخابی مورد قبول نیست',
+            'image.mimes'=>'این فرمت صحیص نیست',
+            'image.max'=>'حجم عکس بیشتر از حد مجاز است ',
             'email.required' =>'پست الکترونیک نباید خالی باشد',
             'email.exists' => 'پست لکترونیک ثبت نشده است',
             'email.email' => 'پست الکترونیک فرمت مناسبی نیست',
             'password.required' =>'رمز عبور نباید خالی باشد',
             'password.min' =>'تعداد کراکتر رمز عبور کمتر از حد مجاز است',
-            'remember.in_array'=> 'مقادیر {مرا فراموش نکن} صحیص نیست '
+            'password.confirmed'=>'رمز عبور یکسان نیست',
+            'current_password.required' =>'رمز عبور نباید خالی باشد',
+            'current_password.current_password' =>'رمز عبور صحیح نمی باشد',
         ];
     }
 }

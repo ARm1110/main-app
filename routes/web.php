@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\User\UserPanelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,30 +18,44 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
-Route::get('/', function () {
+
+
+
+
+Route::get('/home', function () {
     return view('home');
 })->name('home');
 
-Route::get('admin/panel', function () {
-    return view('admin.panel');
-})->name('admin-panel');
-
-//Route::group(['middleware' => 'guest'], function () {
-//    Route::group([
-//        'prefix' => 'home',
-//        'as' => 'home.'
-//    ], function () {
-//        Route::get('login', [AuthController::class, 'login'])->name('show.login');
-//        Route::post('login', [AuthController::class, 'postLogin'])->name('login');
-//        Route::get('register', [AuthController::class, 'register'])->name('show.register');
-//        Route::post('register', [AuthController::class, 'postRegister'])->name('register');
-//    });
-//});
-
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('login', [LoginController::class, 'index'])->name('show.login');
+    Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('login', [LoginController::class, 'login'])->name('handelLogin.login');
     Route::get('register', [RegisterController::class, 'index'])->name('show.register');
     Route::post('register', [RegisterController::class, 'store'])->name('store.register');
-
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::group(['middleware' => ['auth','role:admin']], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::get('panel', [AdminPanelController::class, 'index'])->name('show.panel');
+        Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    });
+});
+
+Route::group(['middleware' => ['auth','role:user']], function () {
+    Route::group([
+        'prefix' => 'user',
+        'as' => 'user.'
+    ], function () {
+        Route::get('dashboard', [UserPanelController::class, 'index'])->name('show.dashboard');
+        Route::get('profile/edit', [UserPanelController::class, 'edit'])->name('profile.edit');
+        Route::put('profile/update', [UserPanelController::class, 'update'])->name('profile.update');
+    });
+});
+

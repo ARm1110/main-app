@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{asset('storage/asset/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('storage/asset/css/responsive.css')}}">
     @notifyCss
+    @vite('resources/css/app.css')
+
 </head>
 
 <body>
@@ -38,6 +40,7 @@
 <script src="{{asset('storage/asset/js/jquery-app.js')}}"></script>
 <script src="{{asset('storage/asset/js/plugin/waves/waves.js')}}"></script>
 <script src="{{asset('storage/asset/js/plugin/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+@vite(['resources/css/app.css','resources/js/app.js'])
 
 
 
