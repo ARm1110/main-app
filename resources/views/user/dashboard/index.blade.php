@@ -9,8 +9,8 @@
     </x-layouts.home.navbar>
 
 
-    <x-layouts.user.dash>
-    </x-layouts.user.dash>
+    <x-layouts.user.dashboard>
+    </x-layouts.user.dashboard>
 
     <x-layouts.home.footer>
     </x-layouts.home.footer>

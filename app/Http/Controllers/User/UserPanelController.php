@@ -11,7 +11,7 @@ class UserPanelController extends Controller
     public function index()
     {
         // Your logic for displaying the user panel index page
-        return view('user.panel.index');
+        return view('user.dashboard.index');
     }
 
     public function edit()

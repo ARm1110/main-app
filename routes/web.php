@@ -21,7 +21,9 @@ use App\Http\Controllers\User\UserPanelController;
 
 
 
-
+Route::get('/', function () {
+    return redirect()->route('home');
+});
 Route::get('/home', function () {
     return view('home');
 })->name('home');
