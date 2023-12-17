@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('code')->unique();
             $table->double('discount');
             $table->timestamp('expires_at')->nullable();
