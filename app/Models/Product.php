@@ -20,11 +20,18 @@ class Product extends Model
     public function childcategory()
     {
         return $this->belongsTo(Childcategory::class);
-        # impalement
+
     }
 
     public function offer()
     {
         return $this->belongsTo(Offer::class);
     }
+
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
 }
