@@ -21,9 +21,9 @@ use App\Http\Controllers\Backend\CategoryController;
 
 
 
-Route::get('/', function () {
-    return redirect()->route('home');
-});
+//Route::get('/', function () {
+//    return redirect()->route('home');
+//});
 Route::get('/home', function () {
     return view('home');
 })->name('home');
@@ -60,6 +60,6 @@ Route::group(['middleware' => ['auth','role:user']], function () {
         Route::put('profile/update', [UserPanelController::class, 'update'])->name('profile.update');
     });
 });
-
+//TODO: impalement this section
 Route::resource('category',CategoryController::class);
 
