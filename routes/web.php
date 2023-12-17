@@ -6,7 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\UserPanelController;
-
+use App\Http\Controllers\Backend\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,4 +60,6 @@ Route::group(['middleware' => ['auth','role:user']], function () {
         Route::put('profile/update', [UserPanelController::class, 'update'])->name('profile.update');
     });
 });
+
+Route::resource('category',CategoryController::class);
 
