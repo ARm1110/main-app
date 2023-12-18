@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-//TODO: modify force
-//TODO: impalement front-end
+
 class CategoryController extends Controller
 {
     /**
@@ -14,6 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        dd($categories);
         return view('categories.index', compact('categories'));
     }
 

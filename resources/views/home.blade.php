@@ -14,8 +14,8 @@
     <x-layouts.home.end-banner>
     </x-layouts.home.end-banner>
 
-    <x-layouts.home.banner-product>
-    </x-layouts.home.banner-product>
+{{--    <x-layouts.home.banner-product>--}}
+{{--    </x-layouts.home.banner-product>--}}
 
     <x-layouts.home.offers>
     </x-layouts.home.offers>
@@ -23,11 +23,11 @@
     <x-layouts.home.main-category>
     </x-layouts.home.main-category>
 
-    <x-layouts.home.banner-more-1>
-    </x-layouts.home.banner-more-1>
+{{--    <x-layouts.home.banner-more-1>--}}
+{{--    </x-layouts.home.banner-more-1>--}}
 
-    <x-layouts.home.product-box>
-    </x-layouts.home.product-box>
+{{--    <x-layouts.home.product-box>--}}
+{{--    </x-layouts.home.product-box>--}}
 
     <x-layouts.home.banner-more-2>
     </x-layouts.home.banner-more-2>
@@ -35,14 +35,14 @@
     <x-layouts.home.product-box-2>
     </x-layouts.home.product-box-2>
 
-    <x-layouts.home.banner-more-3>
-    </x-layouts.home.banner-more-3>
+{{--    <x-layouts.home.banner-more-3>--}}
+{{--    </x-layouts.home.banner-more-3>--}}
 
-    <x-layouts.home.product-box-3>
-    </x-layouts.home.product-box-3>
+{{--    <x-layouts.home.product-box-3>--}}
+{{--    </x-layouts.home.product-box-3>--}}
 
-    <x-layouts.home.banner-more-4>
-    </x-layouts.home.banner-more-4>
+{{--    <x-layouts.home.banner-more-4>--}}
+{{--    </x-layouts.home.banner-more-4>--}}
 
     <x-layouts.home.product-box-4>
     </x-layouts.home.product-box-4>

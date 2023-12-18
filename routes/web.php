@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
         Route::get('panel', [AdminPanelController::class, 'index'])->name('show.panel');
         Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
+        Route::resource('category',CategoryController::class);
     });
 });
 
@@ -62,5 +63,6 @@ Route::group(['middleware' => ['auth','role:user']], function () {
 });
 
 //TODO: impalement this section
-Route::resource('category',CategoryController::class);
+
+
 
