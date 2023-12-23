@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminPanelController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\UserPanelController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +22,9 @@ use App\Http\Controllers\Backend\CategoryController;
 
 
 
-//Route::get('/', function () {
-//    return redirect()->route('home');
-//});
+Route::get('/', function () {
+    return redirect()->route('home');
+});
 Route::get('/home', function () {
     return view('home');
 })->name('home');
@@ -48,6 +49,7 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
         Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::resource('category',CategoryController::class);
+        Route::resource('subcategory',SubCategoryController::class);
     });
 });
 

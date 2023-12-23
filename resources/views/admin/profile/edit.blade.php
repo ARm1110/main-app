@@ -42,7 +42,7 @@
                 @method('PUT')
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-600">عکس پروفایل</label>
-                    <img src="{{ auth()->user()->image ?? 'https://xsgames.co/randomusers/avatar.php?g=pixel'}}" width="80" alt="تصویر" >
+                    <img src="{{ auth()->user()->image}}" width="80" alt="تصویر" >
 
                 </div>
 
