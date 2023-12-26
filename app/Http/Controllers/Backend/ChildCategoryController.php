@@ -4,33 +4,32 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\ChildCategory;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 
-class SubCategoryController extends Controller
+class ChildCategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * نمایش لیست زیردسته‌ها
      */
     public function index()
     {
-        $subCategories = Subcategory::all();
-        return view('admin.subcategories.index', compact('subCategories'));
+        $childCategories = ChildCategory::all();
+        return view('admin.childcategories.index', compact('childCategories'));
     }
 
-
     /**
-     * Show the form for creating a new resource.
+     * نمایش فرم ایجاد زیردسته جدید
      */
     public function create()
     {
-        // You may need to pass category data if subcategories are associated with categories
         $categories = Category::all();
-        return view('admin.subcategories.create', compact('categories'));
+        return view('admin.childcategories.create', compact('categories'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * ذخیره زیردسته جدید
      */
     public function store(Request $request)
     {
@@ -40,44 +39,48 @@ class SubCategoryController extends Controller
             'name.max' => 'نام نمی‌تواند بیشتر از :max کاراکتر باشد.',
             'status.required' => 'فیلد وضعیت الزامی است.',
             'status.boolean' => 'وضعیت باید یک مقدار منطقی (boolean) باشد.',
+            'category_id.required' => 'فیلد دسته بندی الزامی است.',
+            'category_id.exists' => 'دسته بندی انتخاب شده معتبر نیست.',
         ];
 
         $request->validate([
             'name' => 'required|string|max:255',
             'status' => 'required|boolean',
+            'category_id' => 'required|exists:categories,id',
         ], $messages);
 
-        SubCategory::create($request->all());
+        ChildCategory::create($request->all());
 
         notify()->success('زیردسته با موفقیت ایجاد شد.', 'موفقیت آمیز');
-        return redirect()->route('admin.subcategory.index');
+        return redirect()->route('admin.childcategory.index');
     }
 
     /**
-     * Display the specified resource.
+     * نمایش زیردسته مشخص
      */
     public function show($id)
     {
-        $subCategory = SubCategory::findOrFail($id);
-        return view('admin.subcategories.show', compact('subCategory'));
+        $childCategory = ChildCategory::findOrFail($id);
+
+        return view('admin.childcategories.show', compact('childCategory'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * نمایش فرم ویرایش زیردسته
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        $subCategory = SubCategory::findOrFail($id);
-        $categories = Category::all();
+        $childCategory = ChildCategory::findOrFail($id);
+        $subCategories = Subcategory::all();
 
-        return view('admin.subcategories.edit', compact('subCategory', 'categories'));
+
+        return view('admin.childcategories.edit', compact('childCategory', 'subCategories'));
     }
 
-
     /**
-     * Update the specified resource in storage.
+     * بروزرسانی زیردسته مشخص
      */
-    public function update(Request $request,string $id)
+    public function update(Request $request, $id)
     {
         $messages = [
             'name.required' => 'فیلد نام الزامی است.',
@@ -85,32 +88,32 @@ class SubCategoryController extends Controller
             'name.max' => 'نام نمی‌تواند بیشتر از :max کاراکتر باشد.',
             'status.required' => 'فیلد وضعیت الزامی است.',
             'status.boolean' => 'وضعیت باید یک مقدار منطقی (boolean) باشد.',
-            'category_id.required' => 'فیلد دسته بندی الزامی است.',
-            'category_id.exists'=>'فیلد نام دسته بندی باید مرتبط باشد.',
+            'subcategory_id.required' => 'فیلد دسته بندی الزامی است.',
+            'subcategory_id.exists' => 'دسته بندی انتخاب شده معتبر نیست.',
         ];
 
         $request->validate([
             'name' => 'required|string|max:255',
             'status' => 'required|boolean',
-            'category_id'=>'required|exists:categories,id'
+            'subcategory_id' => 'required|exists:subcategories,id',
         ], $messages);
 
-        $subCategory = SubCategory::findOrFail($id);
-        $subCategory->update($request->all());
+        $childCategory = ChildCategory::findOrFail($id);
+        $childCategory->update($request->all());
 
         notify()->success('زیردسته با موفقیت بروزرسانی شد.', 'موفقیت آمیز');
-        return redirect()->route('admin.subcategory.index');
+        return redirect()->route('admin.childcategory.index');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * حذف زیردسته مشخص
      */
     public function destroy($id)
     {
-        $subCategory = SubCategory::findOrFail($id);
-        $subCategory->delete();
+        $childCategory = ChildCategory::findOrFail($id);
+        $childCategory->delete();
 
         notify()->success('زیردسته با موفقیت حذف شد.', 'موفقیت آمیز');
-        return redirect()->route('admin.subcategory.index');
+        return redirect()->route('admin.childcategory.index');
     }
 }

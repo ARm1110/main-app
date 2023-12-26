@@ -14,7 +14,10 @@ class Product extends Model
         'description',
         'price',
         'offer_price',
-        'offer_id'
+        'offer_id',
+        'status',
+        'childcategory_id',
+        'brand_id'
     ];
 
     public function childcategory()
@@ -32,6 +35,15 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(ProductVideo::class);
     }
 
 }

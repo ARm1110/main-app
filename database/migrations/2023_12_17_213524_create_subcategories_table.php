@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained();
             $table->string('name');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

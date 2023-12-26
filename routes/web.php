@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\UserPanelController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +52,9 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
         Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update');
         Route::resource('category',CategoryController::class);
         Route::resource('subcategory',SubCategoryController::class);
+        Route::resource('childcategory',ChildCategoryController::class);
+        Route::resource('product',ProductController::class);
+
     });
 });
 

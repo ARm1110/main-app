@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('childcategories', function (Blueprint $table) {
+
+        Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subcategory_id')->constrained();
-            $table->string('name');
-            $table->boolean('status');
+            $table->foreignId('product_id')->constrained();
+            $table->string('image_path');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('childcategories');
+        Schema::dropIfExists('product_images');
     }
 };
