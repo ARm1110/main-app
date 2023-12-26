@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,8 +54,9 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
         Route::resource('category',CategoryController::class);
         Route::resource('subcategory',SubCategoryController::class);
         Route::resource('childcategory',ChildCategoryController::class);
+        Route::delete('/product/{product}/images/{image}', [ProductController::class, 'removeImage'])->name('products.removeImage');
+        Route::delete('/product/{product}/video/{video}', [ProductController::class, 'removeVideo'])->name('products.videoImage');
         Route::resource('product',ProductController::class);
-
     });
 });
 

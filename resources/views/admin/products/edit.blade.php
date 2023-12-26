@@ -28,7 +28,43 @@
                     });
                 </script>
             @endif
-        <form action="{{ route('admin.product.update',['product'=>$product->id]) }}" method="post">
+
+        <div class="mt-6 flex">
+            <h2 class="text-xl font-semibold mb-2">تصاویر</h2>
+            @foreach($product->images as $image)
+                <div class="flex flex-col">
+                    <img src="{{ asset($image->image_path) }}" alt="Product Image"  class="w-32 h-32 mb-4">
+                    <form action="{{ route('admin.products.removeImage', ['product' => $product, 'image' => $image]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                            حذف
+                        </button>
+                    </form>
+                </div>
+            @endforeach
+        </div>
+        <div class="mt-6 flex">
+            <div class="mt-6">
+                <h2 class="text-xl font-semibold mb-2">فیلم ها</h2>
+                @foreach($product->videos as $video)
+                    <div class="flex flex-col justify-items-center w-full ">
+                        <video  controls>
+                            <source src="{{ asset($video->video_path) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <form action="{{ route('admin.products.videoImage', ['product' => $product, 'video' => $video]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+                                حذف
+                            </button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <form action="{{ route('admin.product.update',['product'=>$product->id]) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

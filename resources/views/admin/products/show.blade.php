@@ -17,9 +17,6 @@
                 @foreach($product->images as $image)
                     <div class="flex flex-col">
                     <img src="{{ asset($image->image_path) }}" alt="Product Image"  class="w-40 h-40 mb-4">
-                        <button type="button" class=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                            حذف
-                        </button>
                     </div>
                 @endforeach
             </div>
@@ -33,9 +30,6 @@
                         <source src="{{ asset($video->video_path) }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                        <button type="button" class=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-                            حذف
-                        </button>
                     </div>
                 @endforeach
             </div>
