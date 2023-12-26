@@ -154,12 +154,27 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //TODO: not test
-        $product = Product::findOrFail($id);
-        $product->delete();
+        try {
+            return DB::transaction(function () use ($id) {
+                $product = Product::findOrFail($id);
 
-        notify()->success('محصول با موفقیت حذف شد.', 'موفقیت آمیز');
-        return redirect()->route('admin.product.index');
+                // Delete associated videos
+                $product->videos()->delete();
+
+                // Delete associated images
+                $product->images()->delete();
+
+                // Delete the product
+                $product->delete();
+
+                notify()->success('محصول با موفقیت حذف شد.', 'موفقیت آمیز');
+                return redirect()->route('admin.product.index');
+            });
+        } catch (\Exception $e) {
+            // Handle the exception (e.g., log it, display an error message)
+            notify()->error('در انجام عملیات خطایی رخ داد', 'خطا');
+            return redirect()->back();
+        }
     }
     private function handleFileUploads($request, $product)
     {
