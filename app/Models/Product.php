@@ -20,6 +20,8 @@ class Product extends Model
         'brand_id'
     ];
 
+
+
     public function childcategory()
     {
         return $this->belongsTo(Childcategory::class);

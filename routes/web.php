@@ -10,7 +10,8 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
-
+use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Backend\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,9 +29,7 @@ use App\Http\Controllers\Backend\ProductController;
 Route::get('/', function () {
     return redirect()->route('home');
 });
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [LoginController::class, 'index'])->name('login');
@@ -71,7 +70,12 @@ Route::group(['middleware' => ['auth','role:user']], function () {
     });
 });
 
-//TODO: impalement this section
+Route::get('products', [\App\Http\Controllers\Frontend\ShowProductController::class, 'index'])->name('show.products');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::patch('/cart/update/{cartId}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/remove/{cartId}', [CartController::class, 'remove'])->name('cart.remove');
 
 
 

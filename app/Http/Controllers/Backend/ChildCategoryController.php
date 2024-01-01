@@ -24,8 +24,8 @@ class ChildCategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.childcategories.create', compact('categories'));
+        $subcategories = SubCategory::all();
+        return view('admin.childcategories.create', compact('subcategories'));
     }
 
     /**
@@ -39,17 +39,17 @@ class ChildCategoryController extends Controller
             'name.max' => 'نام نمی‌تواند بیشتر از :max کاراکتر باشد.',
             'status.required' => 'فیلد وضعیت الزامی است.',
             'status.boolean' => 'وضعیت باید یک مقدار منطقی (boolean) باشد.',
-            'category_id.required' => 'فیلد دسته بندی الزامی است.',
-            'category_id.exists' => 'دسته بندی انتخاب شده معتبر نیست.',
+            'subcategory_id.required' => 'فیلد دسته بندی الزامی است.',
+            'subcategory_id.exists' => 'دسته بندی انتخاب شده معتبر نیست.',
         ];
 
         $request->validate([
             'name' => 'required|string|max:255',
             'status' => 'required|boolean',
-            'category_id' => 'required|exists:categories,id',
+            'subcategory_id' => 'required|exists:subcategories,id',
         ], $messages);
 
-        ChildCategory::create($request->all());
+        Childcategory::create($request->all());
 
         notify()->success('زیردسته با موفقیت ایجاد شد.', 'موفقیت آمیز');
         return redirect()->route('admin.childcategory.index');

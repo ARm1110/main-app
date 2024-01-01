@@ -1,11 +1,10 @@
 @extends('layouts.main2')
 
 @section('content')
-
     <x-layouts.home.festival>
     </x-layouts.home.festival>
 
-    <x-layouts.home.navbar>
+    <x-layouts.home.navbar :data="$data">
     </x-layouts.home.navbar>
 
     <x-layouts.home.main-slider>
@@ -15,30 +14,14 @@
     </x-layouts.home.end-banner>
 
 
-
     <x-layouts.home.offers>
     </x-layouts.home.offers>
 
     <x-layouts.home.main-category>
     </x-layouts.home.main-category>
 
-
-
-
-
-    <x-layouts.home.banner-more-2>
-    </x-layouts.home.banner-more-2>
-
     <x-layouts.home.product-box-2>
     </x-layouts.home.product-box-2>
-
-
-
-    <x-layouts.home.product-box-4>
-    </x-layouts.home.product-box-4>
-
-    <x-layouts.home.article>
-    </x-layouts.home.article>
 
     <x-layouts.home.brand>
     </x-layouts.home.brand>
