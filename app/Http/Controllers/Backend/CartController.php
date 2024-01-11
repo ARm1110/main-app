@@ -3,49 +3,62 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
     public function index()
     {
-        // Get cart items and return the view
-        return view('cart.index');
+        $data=[];
+        $data['categories']=Category::all();
+        $data['cart']=$this->getCartFromSession();;
+
+        return view('cart.index', ['data' => $data]);
     }
 
-    public function addToCart(Product $product)
+    public function addToCart($id)
     {
-        dd('dsd');
-        // Logic to add the product to the cart
-        // You'll need to implement this logic based on your requirements
 
-        // For example, you can use Laravel's session to store the cart items
-        $cart = session()->get('cart', []);
-
+        $cart = $this->getCartFromSession();
+        $product = Product::findOrFail($id);
         // Add the product to the cart
-        $cart[] = [
+        $cart[$product->id] = [
             'id' => $product->id,
             'name' => $product->name,
             'price' => $product->price,
-            'quantity'=> 1,
+            'quantity'=>1
             // Add other product details as needed
         ];
+        session(['cart' => json_encode($cart)]);
 
-        // Update the cart in the session
-        session(['cart' => $cart]);
         notify()->success('محصول با موفقیت به سبد خرید اضافه شد.', 'موفقیت آمیز');
 
-        return redirect()->route('cart.index');
+        return redirect()->route('cart.index')->with('success', 'Product added to cart successfully.');
     }
 
-    public function update(Request $request, $cartId)
+    public function update( $cartId)
     {
         // Update cart item quantity
     }
 
     public function remove($cartId)
     {
-        // Remove item from the cart
+        $cart=$this->getCartFromSession();
+        unset($cart[$cartId]);
+        session(['cart' => json_encode($cart)]);
+        notify()->success('محصول با موفقیت از سبد خرید حذف شد.', 'موفقیت آمیز');
+
+        return redirect()->route('cart.index');
+    }
+
+    private function getCartFromSession()
+    {
+        $cart = Session::get('cart');
+
+        return $cart ? json_decode($cart, true) : [];
     }
 }
