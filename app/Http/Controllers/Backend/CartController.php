@@ -26,10 +26,8 @@ class CartController extends Controller
         $cart = $this->getCartFromSession();
         $product = Product::findOrFail($id);
         // Add the product to the cart
-        $cart[$product->id] = [
+        $cart[auth()->user()->id] = [
             'id' => $product->id,
-            'name' => $product->name,
-            'price' => $product->price,
             'quantity'=>1
             // Add other product details as needed
         ];
@@ -37,7 +35,7 @@ class CartController extends Controller
 
         notify()->success('محصول با موفقیت به سبد خرید اضافه شد.', 'موفقیت آمیز');
 
-        return redirect()->route('cart.index')->with('success', 'Product added to cart successfully.');
+        return redirect()->route('cart.index');
     }
 
     public function update( $cartId)

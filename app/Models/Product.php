@@ -48,4 +48,13 @@ class Product extends Model
         return $this->hasMany(ProductVideo::class);
     }
 
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class)->using(CartProduct::class)->withPivot('quantity');
+    }
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_product')->withPivot('quantity', 'price');
+    }
+
 }

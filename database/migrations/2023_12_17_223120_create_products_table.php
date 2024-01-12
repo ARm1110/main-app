@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description');
             $table->integer('price');
             $table->double('offer_price')->nullable();
+            $table->string('status')->default('not_availability');
             $table->timestamps();
         });
     }

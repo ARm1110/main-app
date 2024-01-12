@@ -64,7 +64,7 @@
                                         @foreach($data['cart'] as $carts )
                                         <tr>
                                             <td class="icon text-center text-red-500"><a href="">حذف</a> </td>
-                                            <td class="title">ساعت دیجیتال نیکون مدل coolpix p900</td>
+                                            <td class="title">{{$data['cart']->product}}</td>
                                             <td class="price"><span class="num">12,000,000</span><span class="text-muted">تومان</span></td>
                                             <td class="td-count"><div class="input-group bootstrap-touchspin bootstrap-touchspin-injected bg-blue-600"><input type="text" name="count" class="counter form-control" value="1"></div></td>
                                             <td class="price"><span class="num">12,000,000</span><span class="text-muted">تومان</span></td>

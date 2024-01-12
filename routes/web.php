@@ -68,19 +68,21 @@ Route::group(['middleware' => ['auth','role:user']], function () {
         Route::get('dashboard', [UserPanelController::class, 'index'])->name('show.dashboard');
         Route::get('profile/edit', [UserPanelController::class, 'edit'])->name('profile.edit');
         Route::put('profile/update', [UserPanelController::class, 'update'])->name('profile.update');
-        Route::get('/verification', [PaymentController::class, 'verifyPayment'])->name('cart.index');
-        Route::post('/create-payment', [PaymentController::class, 'createPayment'])->name('createPayment');
-        Route::get('/verify-payment', [PaymentController::class, 'verifyPayment'])->name('verifyPayment');
     });
 });
 
 Route::get('products', [\App\Http\Controllers\Frontend\ShowProductController::class, 'index'])->name('show.products');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
-Route::patch('/cart/update/{cartId}', [CartController::class, 'update'])->name('cart.update');
-Route::delete('/cart/remove/{cartId}', [CartController::class, 'remove'])->name('cart.remove');
 
+Route::group(['middleware' => ['auth','role:user']], function () {
+    Route::get('/verification', [PaymentController::class, 'verifyPayment'])->name('cart.index');
+    Route::post('/create-payment', [PaymentController::class, 'createPayment'])->name('createPayment');
+    Route::get('/verify-payment', [PaymentController::class, 'verifyPayment'])->name('verifyPayment');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::patch('/cart/update/{cartId}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{cartId}', [CartController::class, 'remove'])->name('cart.remove');
+});
 
 
 
