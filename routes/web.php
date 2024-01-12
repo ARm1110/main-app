@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\CartController;
+use App\Http\Controllers\Backend\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,6 +68,9 @@ Route::group(['middleware' => ['auth','role:user']], function () {
         Route::get('dashboard', [UserPanelController::class, 'index'])->name('show.dashboard');
         Route::get('profile/edit', [UserPanelController::class, 'edit'])->name('profile.edit');
         Route::put('profile/update', [UserPanelController::class, 'update'])->name('profile.update');
+        Route::get('/verification', [PaymentController::class, 'verifyPayment'])->name('cart.index');
+        Route::post('/create-payment', [PaymentController::class, 'createPayment'])->name('createPayment');
+        Route::get('/verify-payment', [PaymentController::class, 'verifyPayment'])->name('verifyPayment');
     });
 });
 
@@ -76,6 +80,9 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::patch('/cart/update/{cartId}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/remove/{cartId}', [CartController::class, 'remove'])->name('cart.remove');
+
+
+
 
 
 

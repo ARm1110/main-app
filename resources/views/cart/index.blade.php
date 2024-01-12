@@ -121,7 +121,8 @@
                                     </tr>
 
                                     </tbody></table>
-                                <form action="">
+                                <form action="" method="POST">
+                                    @csrf
                                     <button class="btn-bank waves-effect waves-light">اقدام به پرداخت
 
                                     </button>
