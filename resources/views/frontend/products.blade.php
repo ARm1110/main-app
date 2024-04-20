@@ -219,7 +219,7 @@
                                                                 </p>
                                                         </div>
                                                     </a>
-                                                    <form action="{{ route('cart.add', ['productId' => $product->id]) }}" method="post">
+                                                    <form action="{{ route('cart.add', ['product' => $product->id]) }}" method="post">
                                                         @csrf
                                                         <button type="submit" class="btnx btnx-default bg-green-400">افزودن به سبد
                                                             خرید</button>

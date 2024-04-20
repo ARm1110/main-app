@@ -15,11 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('merchant_id');
             $table->integer('amount');
-            $table->string('callback_url');
-            $table->text('description');
-            $table->json('metadata')->nullable();
-            $table->string('authority')->nullable();
-            $table->string('status')->default('pending');
+            $table->json('metadata');
+            $table->string('authority');
+            $table->enum('status', ['pending', 'success', 'failed'])->default('pending');
             $table->timestamps();
         });
     }

@@ -12,12 +12,14 @@ class Payment extends Model
     protected $fillable = [
         'user_id',
         'merchant_id',
+        'ref_id',
         'amount',
         'callback_url',
         'description',
         'metadata',
         'authority',
         'status',
+        'track_payment'
     ];
 
     public function user()

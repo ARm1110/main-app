@@ -5,7 +5,7 @@
     <x-layouts.home.festival>
     </x-layouts.home.festival>
 
-    <x-layouts.home.navbar>
+    <x-layouts.home.navbar :data="$data">
     </x-layouts.home.navbar>
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -10,8 +11,11 @@ class UserPanelController extends Controller
 {
     public function index()
     {
+        $data=[];
+        $data['categories']=Category::all();
+
         // Your logic for displaying the user panel index page
-        return view('user.dashboard.index');
+        return view('user.dashboard.index',compact('data'));
     }
 
     public function edit()

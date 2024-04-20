@@ -4,14 +4,31 @@
 
     <div class="auths">
         <div class="container">
+
             @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert" id="error-alert">
+                        {{ $error }}
+                    </div>
+                @endforeach
+                <script>
+                    // Add a script to make the alert sticky and auto-close after 5 seconds
+                    document.addEventListener('DOMContentLoaded', function () {
+                        var errorAlert = document.getElementById('error-alert');
+
+                        // Make the alert sticky
+                        errorAlert.style.position = 'sticky';
+                        errorAlert.style.top = '0';
+
+                        // Auto-close the alert after 5 seconds
+                        setTimeout(function () {
+                            errorAlert.style.opacity = '0';
+                            setTimeout(function () {
+                                errorAlert.style.display = 'none';
+                            }, 1000);
+                        }, 5000);
+                    });
+                </script>
             @endif
             <div class="auth shadow-box">
                 <div class="row" style="min-height:inherit;">
@@ -23,55 +40,31 @@
                                         <a href="index.html"><img src="img/default-icon/logo.png" class="img-fluid"
                                                                   alt=""></a>
                                     </div>
-                                    <h3>وارد شوید</h3>
-                                    <p class="my-3 text-muted">اگر قبلا ثبت نام کرده اید وارد شوید</p>
+                                    <h3>فراموشی رمز عبور</h3>
+                                    <p class="my-3 text-muted">برای بازگرداندن حساب خود ایمیل وارد کنید</p>
                                 </div>
                                 <div class="auth-form">
-                                    <form action="{{ route('handelLogin.login') }}" method="post">
+                                    <form action="{{ route('post_password.reset',['token'=>$user]) }}" method="post">
                                         @csrf
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                                <input type="text" class="form-control" value="{{ old('email') }}" name="email" placeholder="ایمیل">
-                                            </div>
-                                        </div>
                                         <div class="form-group">
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi bi-key"></i></span>
                                                 <input type="password" name="password" placeholder="رمز عبور" class="form-control">
                                             </div>
                                         </div>
-                                        <div class="form-check form-check-box">
-                                            <input class="form-check-input" name="remember" type="checkbox" value="true"
-                                                   id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                مرا فراموش نکن
-                                            </label>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="bi bi-key"></i></span>
+                                                <input type="password" name="password_confirmation" placeholder="تکرار رمز عبور" class="form-control">
+                                            </div>
                                         </div>
                                         <div class="d-flex justify-content-center align-items-center">
                                             <button type="submit" class="btn-login me-2 waves-effect waves-light"><i class="bi bi-person"></i>
-                                                ورود به
-                                                سایت</button>
-                                            <a class="btn-login forget waves-effect waves-light" href="{{route('password.request')}}"><i class="bi bi-person"></i>
-                                                فراموشی رمز عبور
-                                            </a>
+                                                ذخیره</button>
+
                                         </div>
 
                                     </form>
-                                    <div class="register-box">
-                                        <div class="dash-border">
-                                            <span>یا</span>
-                                        </div>
-                                        <div class="register-link">
-                                            <a href="{{ route('show.register')  }}" class="btn btn-outline-secondary waves-effect waves-light">ثبت نام <i
-                                                    class="bi bi-person-plus ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="social">
-                                        <a href="" class="bi bi-google"></a>
-                                        <a href="" class="bi bi-facebook"></a>
-                                        <a href="" class="bi bi-github"></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

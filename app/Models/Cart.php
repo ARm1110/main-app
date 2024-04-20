@@ -25,4 +25,11 @@ class Cart extends Model
     {
         return $this->hasOne(Order::class);
     }
+
+    public function totalPrice()
+    {
+        return $this->products->sum(function ($cartProduct) {
+            return $cartProduct->product->price * $cartProduct->quantity;
+        });
+    }
 }

@@ -14,7 +14,7 @@
                     <div class="line-step">
                         <div class="line-step-boxs">
                             <div class="line-step-box complete">
-                                <a href="cart.html">
+                                <a href="#">
                                     <div class="icon">
                                         <i class="bi bi-bag"></i>
                                     </div>
@@ -22,7 +22,7 @@
                                 </a>
                             </div>
                             <div class="line-step-box">
-                                <a href="checkout.html">
+                                <a href="#">
                                     <div class="icon">
                                         <i class="bi bi-file-earmark-text"></i>
                                     </div>
@@ -30,7 +30,7 @@
                                 </a>
                             </div>
                             <div class="line-step-box">
-                                <a href="cart.html">
+                                <a href="#">
                                     <div class="icon">
                                         <i class="bi bi-file-earmark-break"></i>
                                     </div>
@@ -49,10 +49,12 @@
                         <div class="col-lg-8">
                             <div class="cart-detail">
                                 <div class="table-responsive-lg">
+
+                                    @if(empty($data['carts']) != true)
                                     <table class="table table-hover main-table">
                                         <thead style="background: #f8f8f8;">
                                         <tr class="py-3">
-                                            <th scope="col"></th>
+                                            <th scope="col">عملیات</th>
 
                                             <th scope="col">محصول</th>
                                             <th scope="col">قیمت</th>
@@ -61,16 +63,39 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($data['cart'] as $carts )
+
+
+                                        @foreach($data['carts']->products as $cartProduct)
+
                                         <tr>
-                                            <td class="icon text-center text-red-500"><a href="">حذف</a> </td>
-                                            <td class="title">{{$data['cart']->product}}</td>
-                                            <td class="price"><span class="num">12,000,000</span><span class="text-muted">تومان</span></td>
-                                            <td class="td-count"><div class="input-group bootstrap-touchspin bootstrap-touchspin-injected bg-blue-600"><input type="text" name="count" class="counter form-control" value="1"></div></td>
-                                            <td class="price"><span class="num">12,000,000</span><span class="text-muted">تومان</span></td>
+                                            <td>
+                                                <form action="{{ route('cart.remove-product', $cartProduct) }}" class="flex" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" style="color: red" class=" w-1/2 hover:text-gray-600">خذف</button>
+                                                </form>
+                                            </td>
+                                            <td class="title">{{ $cartProduct->product->name }} </td>
+                                            <td class="price"><span class="num">{{ number_format($cartProduct->product->price) }}</span><span class="text-muted">تومان</span></td>
+{{--                                           <td class="td-count"><div class="input-group bootstrap-touchspin bootstrap-touchspin-injected bg-blue-600"><input type="text" name="count" class="counter form-control" value="{{$cartProduct->quantity}}"></div></td>--}}
+                                            <td class="td-count">
+                                                <form action="{{ route('cart.update-quantity', $cartProduct) }}" class="flex flex-col" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+
+                                                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected bg-blue-600">
+                                                        <input type="text" name="count" class="counter form-control" value="{{ $cartProduct->quantity }}">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success bg-green-500 ">بروزرسانی</button>
+                                                </form>
+                                            </td>
+                                            <td class="price"><span class="num">{{  number_format($cartProduct->product->price * $cartProduct->quantity) }}</span><span class="text-muted">تومان</span></td>
+
                                         </tr>
 
                                         @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -88,19 +113,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="cart-footer-update text-sm-end text-center my-sm-0 my-3">
-                                            <form action="">
-                                                <button type="submit" class="btnx btnx-default waves-effect waves-light bg-green-500">بروز
-                                                    رسانی سبد
-                                                    خرید
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-4">
                             <div class="cart-payment">
                                 <div class="title text-center">
@@ -109,26 +125,30 @@
                                 <table class="table main-table">
                                     <tbody><tr>
                                         <td class="fw-bold">قیمت کل</td>
-                                        <td class="txt"><span class="fw-bold">42,000,000</span> <span class="text-muted">تومان</span></td>
+                                        <td class="txt"><span class="fw-bold">{{  number_format($data['carts']->totalPrice()) }}</span> <span class="text-muted">تومان</span></td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">حمل و نقل</td>
-                                        <td class="txt"><span class="fw-bold">2,000,000</span> <span class="text-muted">تومان</span></td>
+                                        <td class="txt"><span class="fw-bold">رایگان</td>
                                     </tr>
                                     <tr>
                                         <td class="fw-bold">مجموع</td>
-                                        <td class="txt"><span class="fw-bold">70,000,000</span> <span class="text-muted">تومان</span></td>
+                                        <td class="txt"><span class="fw-bold">{{ number_format($data['carts']->totalPrice()) }}</span> <span class="text-muted">تومان</span></td>
                                     </tr>
 
                                     </tbody></table>
-                                <form action="" method="POST">
-                                    @csrf
-                                    <button class="btn-bank waves-effect waves-light">اقدام به پرداخت
-
-                                    </button>
-                                </form>
+                                <a href="{{route('checkout.index')}}" class="btn-bank waves-effect waves-light text-center">
+                                    رفتن به مرحله بعد
+                                </a>
                             </div>
                         </div>
+                        @else
+                            <tr>
+                                <td>
+                                    <p>سبد خالی میباشد!</p>
+                                </td>
+                            </tr>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('order_number')->unique();
+            $table->string('payment_code')->unique();
+            $table->string('track_id')->nullable()->unique();
             $table->integer('total_amount');
-            $table->string('status')->default('pending'); // 'pending', 'completed', 'cancelled', etc.
+            $table->enum('status', ['Shipped', 'Unshipped'])->default('Unshipped');
             $table->timestamps();
         });
     }

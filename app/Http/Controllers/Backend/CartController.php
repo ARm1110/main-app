@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\CartProduct;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -13,50 +15,61 @@ class CartController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
         $data=[];
         $data['categories']=Category::all();
-        $data['cart']=$this->getCartFromSession();;
-
-        return view('cart.index', ['data' => $data]);
+        $data['carts'] = Cart::with('products.product')->where('user_id', $user->id)->first();
+        return view('cart.index', compact('data'));
     }
 
-    public function addToCart($id)
+    public function addToCart(Product $product)
     {
-
-        $cart = $this->getCartFromSession();
-        $product = Product::findOrFail($id);
-        // Add the product to the cart
-        $cart[auth()->user()->id] = [
-            'id' => $product->id,
-            'quantity'=>1
-            // Add other product details as needed
-        ];
-        session(['cart' => json_encode($cart)]);
+        // Assuming you have a logged-in user, get the user ID
+        $userId = auth()->id();
+        // Find or create a cart for the user
+        $cart = Cart::firstOrCreate(['user_id' => $userId]);
+        // Check if the product is already in the cart
+        $existingProduct = $cart->products()->where('product_id', $product->id)->first();
+        if ($existingProduct) {
+            // If the product is already in the cart, increase the quantity
+            $existingProduct->update(['quantity' => $existingProduct->quantity + 1]);
+        } else {
+            // If the product is not in the cart, add it with quantity 1
+            $cartProduct = new CartProduct(['product_id' => $product->id, 'quantity' => 1]);
+            $cart->products()->save($cartProduct);
+        }
 
         notify()->success('محصول با موفقیت به سبد خرید اضافه شد.', 'موفقیت آمیز');
 
         return redirect()->route('cart.index');
     }
 
-    public function update( $cartId)
+    public function updateQuantity(Request $request, CartProduct $cartProduct)
     {
-        // Update cart item quantity
-    }
+        $request->validate([
+            'count' => 'required|numeric|min:1', // Add any validation rules you need
+        ], $this->updateQuantityValidationMessages());
 
-    public function remove($cartId)
-    {
-        $cart=$this->getCartFromSession();
-        unset($cart[$cartId]);
-        session(['cart' => json_encode($cart)]);
-        notify()->success('محصول با موفقیت از سبد خرید حذف شد.', 'موفقیت آمیز');
-
+        $cartProduct->update([
+            'quantity' => $request->input('count'),
+        ]);
+        notify()->success('مقدار با موفقیت به روز شد.', 'موفقیت آمیز');
         return redirect()->route('cart.index');
     }
 
-    private function getCartFromSession()
+    protected function updateQuantityValidationMessages()
     {
-        $cart = Session::get('cart');
-
-        return $cart ? json_decode($cart, true) : [];
+        return [
+            'count.required' =>'مقادیر مورد نیاز هست',
+            'count.numeric'=>'مقادیر باید عدد باشد',
+            'count.min'=>'کمترین مقدار( 1 ) میباشد',
+        ];
     }
+    public function removeProduct(CartProduct $cartProduct)
+    {
+        $cartProduct->delete();
+        notify()->success('محصول با موفقیت از سبد خرید حذف شد.', 'موفقیت آمیز');
+        return redirect()->route('cart.index');
+    }
+
 }

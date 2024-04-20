@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('track_payment')->unique();
+            $table->string('ref_id')->after('merchant_id');
         });
     }
 
@@ -23,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('payments', function (Blueprint $table) {
-            $table->dropColumn('user_id');
-           $table->dropColumn('track_payment');
+           $table->dropColumn('ref_id');
         });
     }
 };

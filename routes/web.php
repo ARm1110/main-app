@@ -13,6 +13,8 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Backend\CartController;
 use App\Http\Controllers\Backend\PaymentController;
+use App\Http\Controllers\Backend\ForgotPasswordController;
+use App\Http\Controllers\Backend\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,16 +77,42 @@ Route::get('products', [\App\Http\Controllers\Frontend\ShowProductController::cl
 
 
 Route::group(['middleware' => ['auth','role:user']], function () {
-    Route::get('/verification', [PaymentController::class, 'verifyPayment'])->name('cart.index');
     Route::post('/create-payment', [PaymentController::class, 'createPayment'])->name('createPayment');
     Route::get('/verify-payment', [PaymentController::class, 'verifyPayment'])->name('verifyPayment');
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add/{productId}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::patch('/cart/update/{cartId}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/remove/{cartId}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/payment-ok', [PaymentController::class, 'paymentOk'])->name('paymentOk');
+    Route::get('/payment-failed', [PaymentController::class, 'paymentFailed'])->name('payment_failed');
 });
 
 
 
 
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'getResetLinkEmail'])->name('password.reset');
+    Route::post('/reset-password/{token}', [ForgotPasswordController::class, 'postResetLinkEmail'])->name('post_password.reset');
+});
 
+Route::group(['middleware' => ['auth','role:user']], function () {
+    Route::get('/checkout', [PaymentController::class, 'checkout'])->name('checkout.index');
+    Route::post('/checkout', [PaymentController::class, 'postCheckout'])->name('checkout.post');
+    Route::get('/get-cities/{province}', [PaymentController::class, 'getCities']);
+});
+
+Route::group(['middleware' => ['auth','role:user']], function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/cart/remove-product/{cartProduct}', [CartController::class, 'removeProduct'])->name('cart.remove-product');
+    Route::patch('/cart/update-quantity/{cartProduct}', [CartController::class, 'updateQuantity'])->name('cart.update-quantity');
+});
+
+Route::group(['middleware' => ['auth','role:admin']], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::get('order', [OrderController::class, 'index'])->name('order.index');
+        Route::patch('order/{order}', [OrderController::class, 'update'])->name('order.update');
+        Route::get('/print-invoice/{id}', [OrderController::class, 'printInvoice'])->name('invoice.index');
+    });
+});

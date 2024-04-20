@@ -20,7 +20,7 @@ class RegisterController extends Controller
         DB::beginTransaction();
         try {
 
-            $user = User::create(
+            User::create(
                 [
                     'username' => $request->username,
                     'email' => $request->email,
@@ -28,13 +28,15 @@ class RegisterController extends Controller
                 ]
             );
             DB::commit();
-            notify()->success('ثبت نام به موفقیت آمیز انجام شد','موفقیت آمیز');
-            return redirect()->route('show.login');
-        } catch (\Throwable $th) {
+
+        } catch (\Exception $e) {
             DB::rollBack();
-            Log::channel('single')->error('Error during user registration: ' . $th->getMessage());
+            Log::channel('single')->error('Error during user registration: ' .  $e->getMessage());
             notify()->error('خطایی در سیستم رخ داده است','خطا در عملیات');
             return redirect()->back();
         }
+
+        notify()->success('ثبت نام به موفقیت آمیز انجام شد','موفقیت آمیز');
+        return redirect()->route('login');
     }
 }

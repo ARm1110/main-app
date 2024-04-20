@@ -76,9 +76,10 @@
             </div>
             <div class="col-lg-12 col-4 order-lg-4 order-1 ">
                 <div class="top-menu-menu d-lg-flex d-none">
+
                     <ul class="navbar-nav">
                         <li class="nav-item main-menu-head"><a href="" class="nav-link border-animate fromCenter fw-bold"><i class="bi bi-list"></i>
-                                مگا تب منو
+                                منوی محصولات
                             </a>
                             <ul class="main-menu">
                                 @foreach($data['categories'] as $category)
@@ -98,11 +99,15 @@
                                 @endforeach
                             </ul>
                         </li>
+                        <li class="nav-item"><a href="{{route('home')}}" class="nav-link border-animate fromCenter">خانه</a>
+
                         <li class="nav-item"><a href="" class="nav-link border-animate fromCenter"> <i
                                     class="bi bi-tag"></i> تخفیف ها و پیشنهاد ها</a></li>
-                        <li class="nav-item"><a href="" class="nav-link border-animate fromCenter">سوالی دارید</a>
-                        </li>
+
                         <li class="nav-item"><a href="{{route('show.products')}}" class="nav-link border-animate fromCenter">محصولات</a></li>
+                        <li class="nav-item"><a href="" class="nav-link border-animate fromCenter">سوالی دارید</a>
+
+                        </li>
                     </ul>
                 </div>
                 <div class="responsive-menu d-block d-lg-none">
