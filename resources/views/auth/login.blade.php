@@ -67,11 +67,7 @@
                                                     class="bi bi-person-plus ms-1"></i></a>
                                         </div>
                                     </div>
-                                    <div class="social">
-                                        <a href="" class="bi bi-google"></a>
-                                        <a href="" class="bi bi-facebook"></a>
-                                        <a href="" class="bi bi-github"></a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>

@@ -1,9 +1,8 @@
 @extends('admin.panel')
 @section('content')
     <script
-        src="https://code.jquery.com/jquery-3.7.1.js"
-        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
+        src="{{asset('storage/asset/js/jquery-3.7.1.js')}}">
+    </script>
 
     <div class= "  overflow-x-auto shadow-md sm:rounded-lg w-full">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

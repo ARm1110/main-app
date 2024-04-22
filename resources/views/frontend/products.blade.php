@@ -66,40 +66,6 @@
                             <div class="category-filter-box">
                                 <div class="category-filter-box-title">
                                     <h4 class="fw-bold">
-                                        دسته بندی نتایج
-                                    </h4>
-                                </div>
-                                <div class="category-filter-box-desc">
-                                    <ul class="category-filter-resoult">
-                                        <li class="py-1"><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" stroke="black">
-                                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
-                                                </svg>کالای دیجیتال</a>
-                                            <ul>
-                                                <li class="ps-2 py-1"><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" stroke="black">
-                                                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
-                                                        </svg>تلفن همراه</a>
-                                                    <ul>
-                                                        <li class="ps-3 py-1"><a href=""><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" class="bi bi-chevron-left me-1" viewBox="0 0 16 16" stroke="black">
-                                                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"></path>
-                                                                </svg>تلفن هوشمند</a>
-                                                            <ul>
-                                                                <li class="ps-3 py-1"><a href="">اپـل</a></li>
-                                                                <li class="ps-3 py-1"><a href="" class="active">سامسونگ</a></li>
-                                                                <li class="ps-3 py-1"><a href="">الجی</a></li>
-                                                            </ul>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-filter">
-                            <div class="category-filter-box">
-                                <div class="category-filter-box-title">
-                                    <h4 class="fw-bold">
                                         فیلتر متنوع
                                     </h4>
                                 </div>
@@ -144,53 +110,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="category-filter">
-                            <div class="category-filter-box">
-                                <div class="category-filter-box-title">
-                                    <h4 class="fw-bold">
-                                        محدوده قیمت
-                                    </h4>
-                                </div>
-                                <div class="category-filter-box-desc">
-                                    <form action="" method="get">
-                                        <div class="form-group">
-                                            <div class="slider slider-horizontal slider-rtl" id="slider5b"><div class="slider-track"><div class="slider-track-low" style="right: 0px; width: 0%;"></div><div class="slider-selection" style="right: 0%; width: 100%;"></div><div class="slider-track-high" style="left: 0px; width: 0%;"></div></div><div class="tooltip tooltip-main bs-tooltip-top" role="presentation" style="right: 50%;"><div class="arrow"></div><div class="tooltip-inner"> تومان 0 - 1000000 تومان </div></div><div class="tooltip tooltip-min bs-tooltip-top" role="presentation" style="right: 0%;"><div class="arrow"></div><div class="tooltip-inner">0</div></div><div class="tooltip tooltip-max bs-tooltip-bottom" role="presentation" style="right: 100%; top: 18px;"><div class="arrow"></div><div class="tooltip-inner">1000000</div></div><div class="slider-handle min-slider-handle round" role="slider" aria-valuemin="0" aria-valuemax="1000000" style="right: 0%;" aria-valuenow="0" tabindex="0"></div><div class="slider-handle max-slider-handle round" role="slider" aria-valuemin="0" aria-valuemax="1000000" style="right: 100%;" aria-valuenow="1000000" tabindex="0"></div></div><input type="range" id="catRange" name="range[]" style="display: none;" data-value="0,1000000" value="0,1000000">
-                                            <div class="show-more-btn mt-2">
-                                                <button class="shadow-box waves-effect waves-light" type="submit">اعمال فیلتر <i class="bi bi-filter"></i></button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="category-filter">
-                            <div class="category-filter-box">
-                                <div class="category-filter-box-title">
-                                    <h4 class="fw-bold">
-                                        فیلتر رنگ
-                                    </h4>
-                                </div>
-                                <div class="category-filter-box-desc">
-                                    <div class="color-box">
-                                        <div class="color-box-item" data-toggle="tooltip" data-placement="top" aria-label="نام رنگ مورد نظر">
-                                            <span class="color bg-danger"></span>
-                                        </div>
-                                        <div class="color-box-item active" data-toggle="tooltip" data-placement="top" aria-label="نام رنگ مورد نظر">
-                                            <span class="color bg-primary"></span>
-                                        </div>
-                                        <div class="color-box-item" data-toggle="tooltip" data-placement="top" aria-label="نام رنگ مورد نظر">
-                                            <span class="color bg-warning"></span>
-                                        </div>
-                                        <div class="color-box-item" data-toggle="tooltip" data-placement="top" aria-label="نام رنگ مورد نظر">
-                                            <span class="color bg-success"></span>
-                                        </div>
-                                        <div class="color-box-item" data-toggle="tooltip" data-placement="top" aria-label="نام رنگ مورد نظر">
-                                            <span class="color bg-secondary"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
                     </div>
                 </div>
                 <div class="col-lg-9">
@@ -203,7 +124,7 @@
                                         </a><div class="product-row-desc justify-content-start"><a href="product.html">
                                             </a><div class="product-row-desc-item"><a href="product.html">
                                                     <div class="product-row-img">
-                                                        <img src="{{asset('storage/asset/img/product/product-image1.jpg')}}" alt="" class="" width="150">
+                                                        <img src="{{asset($product->images->first()->image_path )}}" alt="" class="" width="150">
                                                     </div>
                                                 </a><div class="product-row-title"><a href="product.html">
                                                         <h6 class="font-16">{{$product->name}} </h6>

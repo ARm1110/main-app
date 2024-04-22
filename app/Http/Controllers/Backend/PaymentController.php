@@ -42,7 +42,7 @@ class PaymentController extends Controller
                 "merchant_id" => "678B0736-483D-4DC7-9CC9-D0431DC88035",
                 "amount" => $request->amount,
                // "callback_url" => "https://sandbox.banktest.ir/zarinpal/api.zarinpal.com/pg/v4/payment/verify.json",
-                "callback_url"=>'http://main-app.test:8090/verify-payment',
+                "callback_url"=>'http://main-app.test/verify-payment',
                 "description" => "خرید تست",
                 "metadata" => ["email" => "info@email.com", "mobile" => "09121234567"],
                 "currency"=> "IRT",

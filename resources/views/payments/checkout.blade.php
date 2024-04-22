@@ -91,17 +91,18 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="first_name" class="form-label">نام گیرنده<span class="text-danger ms-1">*</span></label>
-                                                        <input type="text" id="first_name" value="{{  old('first_name') ?? $data['address']->first_name }}" name="first_name" class="form-control rounded-pill">
+                                                        <input type="text" id="first_name" value="{{  $data['address']->first_name ?? ''  }}" name="first_name" class="form-control rounded-pill">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="lname" class="form-label">نام خانوادگی گیرنده<span class="text-danger ms-1">*</span></label>
-                                                        <input type="text" id="lname" value="{{  old('last_name') ?? $data['address']->last_name }}" name="last_name" class="form-control rounded-pill">
+                                                        <input type="text" id="lname" value="{{  $data['address']->last_name ?? '' }}" name="last_name" class="form-control rounded-pill">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -109,8 +110,10 @@
                                                         <label for="ostan" class="form-label">استان <span class="text-danger ms-1">*</span></label>
                                                         <select id="ostan" name="province_id" class="form-select rounded-pill">
                                                             <option value="" selected disabled>انتخاب استان</option>
+
                                                             @foreach($data['provinces'] as $province)
-                                                                <option value="{{ $province->id }}" @if($province->id == old('province_id' ) or $province->id == $data['address']->province_id ) selected @endif >{{ $province->name }}</option>
+
+                                                                <option value="{{ $province->id }}" @if($data['address']->province_id != null && $province->id ==$data['address']->province_id  ) selected @endif >{{ $province->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -121,7 +124,7 @@
                                                         <select id="city" name="city_id" class="form-select rounded-pill">
                                                             <option value="" selected disabled>انتخاب شهر</option>
                                                             @foreach($data['cities'] as $city)
-                                                                <option value="{{ $city->id }}"  @if($city->id == old('city_id') or $city->id == $data['address']->city_id ) selected @endif>{{ $city->name }}</option>
+                                                                <option value="{{ $city->id }}"  @if($data['address']->city_id != null  && $city->id  ==$data['address']->city_id) selected @endif>{{ $city->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -130,12 +133,12 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="street" class="form-label">آدرس کامل<span class="text-danger ms-1">*</span></label>
-                                            <input type="text" name="full_address" value="{{ old('full_address') ??  $data['address']->full_address }}"  placeholder="پلاک خانه و نام خیابان" id="street" class="form-control rounded-pill">
+                                            <input type="text" name="full_address" value="{{ old('full_address') ??  $data['address']->full_address ?? '' }}"  placeholder="پلاک خانه و نام خیابان" id="street" class="form-control rounded-pill">
                                         </div>
 
                                         <div class="form-group">
                                             <label for="tel" class="form-label">تلفن ثابت<span class="text-danger ms-1">*</span></label>
-                                            <input type="text" name="tel" id="tel" value="{{ old('tel') ??  $data['address']->tel}}"  placeholder=" تلفن ثابت با پیش شماره" class="form-control rounded-pill">
+                                            <input type="text" name="tel" id="tel" value="{{ old('tel') ??  $data['address']->tel ?? ''}}"  placeholder=" تلفن ثابت با پیش شماره" class="form-control rounded-pill">
                                         </div>
                                         <div class="form-group">
                                             <label for="phone"  class="form-label">تلفن همراه<span class="text-danger ms-1">*</span></label>
@@ -143,11 +146,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="email" class="form-label">آدرس ایمیل<span class="text-danger ms-1">*</span></label>
-                                            <input type="text" id="email" name="email"  value="{{$data['user']->email}}" class="form-control rounded-pill">
+                                            <input type="text" id="email" name="email"  value="{{$data['user']->email}}"  class="form-control rounded-pill">
                                         </div>
                                         <div class="form-group">
                                             <label for="postal-code" class="form-label">کد پستی<span class="text-danger ms-1">*</span></label>
-                                            <input type="text" name="postal_code" value="{{ old('postal_code') ??  $data['address']->postal_code}}"   placeholder='کد پستی را بادقت وارد کنید' id="postal-code" class="form-control rounded-pill">
+                                            <input type="text" name="postal_code" value="{{ old('postal_code') ??  $data['address']->postal_code ?? ''}}"   placeholder='کد پستی را بادقت وارد کنید' id="postal-code" class="form-control rounded-pill">
                                         </div>
                                         <div class="form-group">
                                             <label for="descOrder" class="form-label">یادداشت های سفارش اختیاری<span class="text-danger ms-1">*</span></label>
@@ -216,7 +219,7 @@
 
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{asset('storage/asset/js/jquery-3.6.4.min.js')}}"></script>
     <script>
         $(document).ready(function () {
             // Handle province selection change

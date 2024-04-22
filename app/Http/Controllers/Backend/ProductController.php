@@ -54,7 +54,7 @@ class ProductController extends Controller
             });
         } catch (\Exception $e) {
             // Handle the exception (e.g., log it, display an error message)
-            notify()->error('در انجام عملیات خطایی رخ داد', 'خطا');
+            notify()->error('در انجام عملیات خطایی رخ داد' .  $e->getMessage() , 'خطا');
             return redirect()->back()->withInput();
         }
     }
