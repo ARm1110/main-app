@@ -1,4 +1,4 @@
-<aside class="w-80 h-screen bg-gray-50">
+<aside class="w-80 h-screen bg-blue-200">
     <div>
         <ul class="space-y-2 font-medium">
             <li class="hover:bg-green-400">

@@ -1,17 +1,17 @@
-<nav class=" border-gray-600 bg-gray-300  ">
+<nav class=" border-blue-600 bg-blue-300  ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-            logo
+            پنل ادمین فروشگاه
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
 
             <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full"  src="{{auth()->user()->image}}" alt="user photo">
+                <img class="w-10 h-10 rounded-full"  src="{{auth()->user()->image}}" alt="user photo">
             </button>
             <!-- Dropdown menu -->
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow " id="user-dropdown">
+            <div class="z-50 hidden my-4 text-base list-none bg-blue-100 divide-y divide-gray-100 rounded-lg shadow " id="user-dropdown">
                 <div class="px-4 py-3">
                     <span class="block text-sm text-gray-900 dark:text-white">{{ auth()->user()->username  }}</span>
                     <span class="block text-sm  text-gray-500 truncate ">{{ auth()->user()->email  }}</span>

@@ -56,20 +56,30 @@ class OrderController extends Controller
      */
     public function update(Request $request, string $id)
     {
+//        dd($request->all());
         $messages = [
-            'name.required' => 'فیلد نام الزامی است.',
-            'name.string' => 'نام باید یک رشته باشد.',
+            'status.required' => 'فیلد وضعیت الزامی است.',
+            'status.string' => 'فیلد وضعیت باید یک رشته باشد.',
         ];
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'status'=>'required|boolean'
+            'status' => 'required|string|max:255',
         ], $messages);
 
         $category = Order::findOrFail($id);
-        $category->update($request->all());
-        notify()->success('دسته بندی با موفقیت بروزرسانی شد.', 'موفقیت آمیز');
-        return redirect()->route('admin.category.index');
+
+
+        $success= $category->update(['status'=>$request->status]);
+
+        if ($success) {
+            notify()->success('دسته بندی با موفقیت بروزرسانی شد.', 'موفقیت آمیز');
+            return redirect()->route('admin.order.index');
+        } else {
+            notify()->error('عملیات با خطلا مواجه گردید!', 'ناموفق');
+            return redirect()->route('admin.order.index');
+        }
+
+
     }
 
     /**

@@ -112,7 +112,7 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
         'as' => 'admin.'
     ], function () {
         Route::get('order', [OrderController::class, 'index'])->name('order.index');
-        Route::patch('order/{order}', [OrderController::class, 'update'])->name('order.update');
+        Route::patch('order/{order_id}', [OrderController::class, 'update'])->name('order.update');
         Route::get('/print-invoice/{id}', [OrderController::class, 'printInvoice'])->name('invoice.index');
     });
 });
