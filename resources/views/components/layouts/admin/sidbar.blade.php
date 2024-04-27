@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="hover:bg-green-400">
-                <a href="{{ route('admin.product.index') }}" class="flex items-center hover:text-white hover:font-bold p-2 text-gray-900 rounded-lg">
+                <a href="{{ route('admin.Uipayments.index') }}" class="flex items-center hover:text-white hover:font-bold p-2 text-gray-900 rounded-lg">
                     <span class="ms-3">پرداخت ها  </span>
                 </a>
             </li>

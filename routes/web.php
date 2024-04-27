@@ -116,3 +116,14 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
         Route::get('/print-invoice/{id}', [OrderController::class, 'printInvoice'])->name('invoice.index');
     });
 });
+
+Route::group(['middleware' => ['auth','role:admin']], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::get('Uipayments', [\App\Http\Controllers\Backend\UiPaymentsController::class, 'index'])->name('Uipayments.index');
+        Route::patch('Uipayments/{payments_id}', [\App\Http\Controllers\Backend\UiPaymentsController::class, 'update'])->name('Uipayments.update');
+
+    });
+});

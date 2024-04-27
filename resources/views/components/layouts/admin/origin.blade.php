@@ -5,17 +5,23 @@
         <!-- افزودن بلوک‌های آماری یا اطلاعاتی به دلخواه -->
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold mb-4">تعداد کاربران</h3>
-            <p class="text-gray-700">1200</p>
+            <p class="text-gray-700">
+                {{ $data['users'] }}
+            </p>
         </div>
 
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold mb-4">سفارشات جدید</h3>
-            <p class="text-gray-700">25</p>
+            <p class="text-gray-700">
+                {{ $data['orders'] }}
+            </p>
         </div>
 
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h3 class="text-xl font-semibold mb-4">درآمد ماهیانه</h3>
-            <p class="text-gray-700">$30,000</p>
+            <p class="text-gray-700">
+                {{ $data['income'] }}
+            </p>
         </div>
     </div>
 </div>

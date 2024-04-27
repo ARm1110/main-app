@@ -1,4 +1,4 @@
-@extends('admin.panel')
+@extends('admin.main')
 
 @section('content')
     <div class="container mx-auto mt-8">

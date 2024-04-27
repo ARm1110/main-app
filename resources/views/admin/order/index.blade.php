@@ -1,4 +1,4 @@
-@extends('admin.panel')
+@extends('admin.main')
 @section('content')
     <script
         src="{{asset('storage/asset/js/jquery-3.7.1.js')}}">

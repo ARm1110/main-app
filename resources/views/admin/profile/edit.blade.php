@@ -1,6 +1,6 @@
 <!-- resources/views/admin/profile/edit.blade.php -->
 
-@extends('admin.panel')
+@extends('admin.main')
 @section('content')
 
 
