@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\CartController;
 use App\Http\Controllers\Backend\PaymentController;
 use App\Http\Controllers\Backend\ForgotPasswordController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\SpecialOfferController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -127,3 +128,5 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
 
     });
 });
+
+Route::resource('special_offers', SpecialOfferController::class);

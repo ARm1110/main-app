@@ -82,7 +82,7 @@
                                 منوی محصولات
                             </a>
                             <ul class="main-menu">
-                                @foreach($data['categories'] as $category)
+                                @foreach($categories as $category)
                                     <li class="main-menu-sub-active-li"><a href=""><i class="bi bi-phone"></i>
                                             {{$category->name}}</a>
 
@@ -139,7 +139,7 @@
                             <ul class="rm-item-menu navbar-nav">
                                 <li class="nav-item bg-ul-f7"><a href="index.html" class="nav-link">صفحه اصلی</a>
                                 </li>
-                                @foreach($data['categories'] as $category)
+                                @foreach($categories as $category)
                                 <li class="nav-item bg-ul-f7">
                                     <a href="" class="nav-link">
                                         {{$category->name}}
