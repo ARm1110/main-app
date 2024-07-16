@@ -15,7 +15,6 @@ class ShowProductController extends Controller
         $data=[];
         $data['categories']=Category::all();
         $data['products']=Product::all();
-
         return view('frontend.products', compact('data'));
     }
 

@@ -4,7 +4,7 @@
     <x-layouts.home.festival>
     </x-layouts.home.festival>
 
-    <x-layouts.home.navbar :data="$data">
+    <x-layouts.home.navbar :categories="$data['categories']">
     </x-layouts.home.navbar>
 
     <div class="category">

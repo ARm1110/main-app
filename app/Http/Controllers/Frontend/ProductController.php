@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $products = Product::all(); // Assuming you have a Product model
 
-        return view('roducts.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     public function show($id)
