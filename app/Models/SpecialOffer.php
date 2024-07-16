@@ -15,4 +15,12 @@ class SpecialOffer extends Model
     {
         return $this->belongsTo(Product::class);
     }
+    public function getDiscountedPriceAttribute()
+    {
+        if ($this->product) {
+            return $this->product->price - ($this->product->price * ($this->discount / 100));
+        }
+
+        return null;
+    }
 }

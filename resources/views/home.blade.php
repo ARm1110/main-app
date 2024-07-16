@@ -14,16 +14,13 @@
     </x-layouts.home.end-banner>
 
 
-    <x-layouts.home.offers>
-    </x-layouts.home.offers>
-
     <x-layouts.home.main-category>
     </x-layouts.home.main-category>
 
     <x-layouts.home.product-box-2 :specialOffers="$data['specialOffers']">
     </x-layouts.home.product-box-2>
 
-    <x-layouts.home.brand>
+    <x-layouts.home.brand :brands="$data['brands']">
     </x-layouts.home.brand>
 
     <x-layouts.home.footer>

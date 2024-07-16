@@ -129,4 +129,22 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
     });
 });
 
-Route::resource('special_offers', SpecialOfferController::class);
+Route::group(['middleware' => ['auth','role:admin']], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::resource('special_offers', SpecialOfferController::class);
+    });
+});
+
+Route::group(['middleware' => ['auth','role:admin']], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::resource('brands', \App\Http\Controllers\Backend\BrandController::class);
+    });
+});
+
+

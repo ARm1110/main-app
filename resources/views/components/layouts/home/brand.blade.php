@@ -6,46 +6,18 @@
                     <h6 class="slider-title">برخی همکاران ما</h6>
                 </div>
                 <div class="pbt-header-link">
-                    <a href="category.html" class="fromCenter border-animate">مشاهده همه</a>
+                    <a href="" class="fromCenter border-animate text-black">مشاهده همه</a>
                 </div>
             </div>
             <div class="swiper partnerSwipper">
                 <div class="swiper-wrapper">
+                    @foreach ($brands as $brand)
                     <div class="swiper-slide partner-item">
                         <a href="#">
-                            <img src="img/brand/brand1.png" class="img-fluid" alt="">
+                            <img src="{{ asset('storage/' . $brand->image) }}" class="img-fluid" alt="{{$brand->name}}">
                         </a>
                     </div>
-                    <div class="swiper-slide partner-item">
-                        <a href="#">
-                            <img src="img/brand/brand2.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide partner-item">
-                        <a href="#">
-                            <img src="img/brand/brand3.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide partner-item">
-                        <a href="#">
-                            <img src="img/brand/brand5.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide partner-item">
-                        <a href="#">
-                            <img src="img/brand/brand7.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide partner-item">
-                        <a href="#">
-                            <img src="img/brand/brand8.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide partner-item">
-                        <a href="#">
-                            <img src="img/brand/canon.png" class="img-fluid" alt="">
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="swiper-button-next sb2" style="top: 36%;"></div>
                 <div class="swiper-button-prev sb2" style="top: 36%;"></div>
