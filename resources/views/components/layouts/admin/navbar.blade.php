@@ -3,9 +3,11 @@
         <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
             پنل ادمین فروشگاه
         </a>
+        <form action="{{ route('admin.search.results') }}" method="GET" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="query" placeholder="جستجو" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">جستجو</button>
+        </form>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-
-
             <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 " id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-10 h-10 rounded-full"  src="{{auth()->user()->image}}" alt="user photo">

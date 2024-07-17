@@ -147,4 +147,14 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
     });
 });
 
+Route::group(['middleware' => ['auth','role:admin']], function () {
+    Route::group([
+        'prefix' => 'admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::get('/search', [\App\Http\Controllers\Backend\SearchController::class, 'index'])->name('search.index');
+        Route::get('/search/results', [\App\Http\Controllers\Backend\SearchController::class, 'search'])->name('search.results');
+
+    });
+});
 
