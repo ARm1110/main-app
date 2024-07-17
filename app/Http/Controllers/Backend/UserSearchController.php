@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class SearchController extends Controller
+class UserSearchController extends Controller
 {
-
 
     /**
      * پردازش جستجو و نمایش نتایج.
@@ -20,9 +20,12 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-         // جستجو با استفاده از Scout
-        $products = Product::search($query)->get();
+        // جستجو با استفاده از Scout
 
-        return view('admin.search.results', compact('products', 'query'));
+        $data=[];
+        $data['categories']=Category::all();
+        $data['products']= Product::search($query)->get();
+        $data['query']=$request->input('query');
+        return view('frontend.products', compact('data'));
     }
 }

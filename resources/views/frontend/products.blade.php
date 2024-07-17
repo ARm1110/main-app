@@ -116,6 +116,10 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="category-item">
+                        @if(isset($query))
+                            <h1>نتایج جستجو برای: {{ $query  }}</h1>
+                        @endif
+
                         <div class="row">
                             @foreach($data['products'] as $product )
                                 <div class="col-12">

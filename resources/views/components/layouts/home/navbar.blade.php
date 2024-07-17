@@ -8,9 +8,9 @@
             </div>
             <div class="col-lg-6 text-center d-none d-lg-block order-lg-2 order-3">
                 <div class="top-menu-search ">
-                    <form action="" method="get">
+                    <form action="{{ route('search.results') }}" method="get">
                         <div class="input-group">
-                            <input name="txt" type="text" class="search-txt rounded-pill"
+                            <input name="query"  type="text" class="search-txt rounded-pill"
                                    placeholder="نام محصول مورد نظر خود را وارد کنید">
                             <button type="submit" class="search-btn input-group-text rounded-pill">
                                 <i class="bi bi-search"></i>

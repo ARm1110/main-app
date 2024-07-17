@@ -74,7 +74,6 @@ Route::group(['middleware' => ['auth','role:user']], function () {
     });
 });
 
-Route::get('products', [\App\Http\Controllers\Frontend\ShowProductController::class, 'index'])->name('show.products');
 
 
 Route::group(['middleware' => ['auth','role:user']], function () {
@@ -157,4 +156,9 @@ Route::group(['middleware' => ['auth','role:admin']], function () {
 
     });
 });
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('products', [\App\Http\Controllers\Frontend\ShowProductController::class, 'index'])->name('show.products');
 
+    Route::get('/search', [\App\Http\Controllers\Backend\UserSearchController::class, 'index'])->name('search.index');
+    Route::get('/search/results', [\App\Http\Controllers\Backend\UserSearchController::class, 'search'])->name('search.results');
+});
