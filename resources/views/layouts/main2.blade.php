@@ -26,7 +26,37 @@
 <x-notify::notify />
 @notifyJs
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButton = document.getElementById('toggleButton');
+        const closeButton = document.getElementById('closeButton');
+        const toggleContent = document.getElementById('toggleContent');
 
+        toggleButton.addEventListener('click', function () {
+            toggleContent.classList.remove('hidden');
+            toggleButton.classList.add('hidden');
+            closeButton.classList.remove('hidden');
+        });
+
+        closeButton.addEventListener('click', function () {
+            toggleContent.classList.add('hidden');
+            toggleButton.classList.remove('hidden');
+            closeButton.classList.add('hidden');
+        });
+
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 640) {
+                toggleContent.classList.remove('hidden');
+                toggleButton.classList.add('hidden');
+                closeButton.classList.add('hidden');
+            } else {
+                toggleContent.classList.add('hidden');
+                toggleButton.classList.remove('hidden');
+                closeButton.classList.add('hidden');
+            }
+        });
+    });
+</script>
 {{--<script src="{{asset('asset/js/jquery-3.6.1.min.js')}}"></script>--}}
 {{--<script src="{{asset('asset/js/bootstrap.bundle.min.js')}}"></script>--}}
 {{--<script src="{{asset('asset/js/swiper-bundle.min.js')}}"></script>--}}

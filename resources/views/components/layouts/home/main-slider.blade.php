@@ -24,40 +24,10 @@
 {{--    </div>--}}
 {{--</div>--}}
 <!-- end main slider -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const toggleButton = document.getElementById('toggleButton');
-        const closeButton = document.getElementById('closeButton');
-        const toggleContent = document.getElementById('toggleContent');
 
-        toggleButton.addEventListener('click', function () {
-            toggleContent.classList.remove('hidden');
-            toggleButton.classList.add('hidden');
-            closeButton.classList.remove('hidden');
-        });
 
-        closeButton.addEventListener('click', function () {
-            toggleContent.classList.add('hidden');
-            toggleButton.classList.remove('hidden');
-            closeButton.classList.add('hidden');
-        });
-
-        window.addEventListener('resize', function () {
-            if (window.innerWidth >= 640) {
-                toggleContent.classList.remove('hidden');
-                toggleButton.classList.add('hidden');
-                closeButton.classList.add('hidden');
-            } else {
-                toggleContent.classList.add('hidden');
-                toggleButton.classList.remove('hidden');
-                closeButton.classList.add('hidden');
-            }
-        });
-    });
-</script>
-
-<div class="carousel w-full">
-    <div id="slide1" class="carousel-item relative w-full">
+<div class="carousel w-full rounded-lg ">
+    <div id="slide1" class="carousel-item relative w-full ">
         <img
             src="https://img.daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.webp"
             class="w-full" />
