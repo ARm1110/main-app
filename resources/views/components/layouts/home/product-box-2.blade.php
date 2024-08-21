@@ -44,7 +44,7 @@
                                 <div class="see-all">
                                     <a href="#">
                                         <i class="bi bi-arrow-left-circle"></i>
-                                        <p>1مشاهده همه</p>
+                                        <p>مشاهده همه</p>
                                     </a>
                                 </div>
                             </div>
